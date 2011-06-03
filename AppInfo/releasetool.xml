@@ -46,7 +46,7 @@
 	<target name="all" depends="dist" />
 
 	<target name="help">
-		<echo>Hummer Machine Build. Available </echo>
+		<echo>ReleaseTool. Available </echo>
 		<echo>   </echo>
 		<echo>   [ビルド]</echo>
 		<echo>   ビルドするには local.properties ファイルを作成する必要があります。</echo>
