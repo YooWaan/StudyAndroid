@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ReleaseTool" default="help" basedir=".">
+
+	<property name="app.apk" value="AppInfo.apk"/>
+	<property name="unsigned.apk" value="AppInfo-unsigned.apk"/>
+
+	<property name="dist.dir" value="dist"/>
+	<property name="bin.dir" value="bin"/>
+
+	<property name="sign.alias" value="infoteria"/>
+	<property name="sign.keystore" value="apk.sign.keystore"/>
+	<property name="sign.storepass" value="apk.sign.password" />
+
+	<target name="clean">
+	  <ant antfile="build.xml" target="clean" />
+	</target>
+
+	<target name="compile">
+	  <ant antfile="build.xml" target="release" />
+	</target>
+
+	<target name="apk-copy" depends="compile">
+		<copy file="${bin.dir}/${unsigned.apk}" tofile="${dist.dir}/${app.apk}" />
+	</target>
+
+	<target name="keystore">
+		<delete file="${sign.keystore}" />
+		<genkey alias="${sign.alias}" storepass="${sign.storepass}" keystore="${sign.keystore}" validity="10000" >
+			<dname>
+				<param name="CN" value="Developer"/>
+				<param name="OU" value="R&amp;D"/>
+				<param name="O"  value="INFOTERIA"/>
+				<param name="L"  value="Shinagawa-Ku"/>
+				<param name="ST" value="Tokyo"/>
+				<param name="C"  value="JP"/>
+			</dname>
+		</genkey>
+	</target>
+
+	<target name="sign">
+	  <signjar jar="${dist.dir}/${app.apk}" alias="${sign.alias}" keystore="${sign.keystore}" storepass="${sign.storepass}" />
+	</target>
+
+	<target name="dist" depends="clean,compile,apk-copy,sign" />
+
+	<target name="all" depends="dist" />
+
+	<target name="help">
+		<echo>Hummer Machine Build. Available </echo>
+		<echo>   </echo>
+		<echo>   [ビルド]</echo>
+		<echo>   ビルドするには local.properties ファイルを作成する必要があります。</echo>
+		<echo>   必要な変数は sdk.dir にSDKまでのファイルパスを設定してください。</echo>
+		<echo>   </echo>
+		<echo>   e.g</echo>
+		<echo>   sdk.dir=/home/develop/sdk/android</echo>
+		<echo>   </echo>
+		<echo>   [アプリケーション署名]</echo>
+		<echo>   ${sign.keystore} をアプリケーションに署名しています。</echo>
+		<echo>   再生成するときは ant -f machinebuild.xml keystore を実行してください。</echo>
+		<echo>   </echo>
+		<echo>   ※ 毎回作成するとアプリケーション以前にインストールしたアプリケーションが同一のものと認識されなくなります。</echo>
+		<echo></echo>
+		<echo>   [targets]</echo>
+		<echo></echo>
+		<echo>   help     :  Display help</echo>
+		<echo>   clean    :  bin , dist directory</echo>
+		<echo>   compile  :  execute ant -f build.xml release</echo>
+		<echo>   apl-copy :  copy bin/unsigned.apk   dist/application.apk</echo>
+		<echo>   keystore :  generate new keystore</echo>
+		<echo>                  validity=10000</echo>
+		<echo>                  CN=Developer</echo>
+		<echo>                  OU=R&amp;D</echo>
+		<echo>                  O=Infoteria</echo>
+		<echo>                  L=Shinagawa-Ku</echo>
+		<echo>                  ST=Tokyo</echo>
+		<echo>                  C=jp</echo>
+		<echo>                  storepass=${sign.storepass} keystore=${sign.storepass}</echo>
+		<echo>   sign     :  sign application </echo>
+		<echo>   dist     :  depends clean, compile,apk-copy,sign</echo>
+		<echo>   all      :  depends dist</echo>
+		<echo></echo>
+		<echo></echo>
+	</target>
+
+</project>
