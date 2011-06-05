@@ -7,11 +7,11 @@
 	<property name="bin.dir" value="bin"/>
 
 	<target name="clean">
-	  <ant antfile="build.xml" target="clean" />
+	  <ant antfile="${user.dir}/build.xml" target="clean" inheritAll="false" />
 	</target>
 
 	<target name="compile">
-	  <ant antfile="build.xml" target="release" />
+	  <ant antfile="${user.dir}/build.xml" target="release" inheritAll="false" />
 	</target>
 
 	<target name="apk-copy" depends="compile">
