@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView  
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="Widget and Service Application"
+    />
+
+<TextView  
+	android:id="@+id/service_status"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="..."
+    />
+
+<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" >
+  <Button android:text="Start"
+		  android:id="@+id/btn_start"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:layout_weight="1" />
+
+  <Button android:text="Stop"
+		  android:id="@+id/btn_stop"
+		  android:layout_width="wrap_content"
+		  android:layout_height="wrap_content"
+		  android:layout_weight="1" />
+</LinearLayout>
+
+
+</LinearLayout>
+

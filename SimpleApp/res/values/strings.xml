@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SimpleApp</string>
+
+
+    <string name="label_back">Back</string>
+    <string name="label_lifecycle">Life Cycle</string>
+    <string name="label_list">List Sample</string>
+
+</resources>
