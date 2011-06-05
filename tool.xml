@@ -48,6 +48,24 @@
 
 	<target name="all" depends="dist" />
 
+	<target name="test">
+		<condition property="adb.command" value="adb.exe" else="adb">
+			<os family="windows" />
+		</condition>
+
+		<echo>TEST : ${adb.command} ${test.package}</echo>
+
+		<exec executable="${adb.command}">
+			<arg line="shell"/>
+			<arg line="am"/>
+			<arg line="instrument"/>
+			<arg line="-w"/>
+			<arg line="${test.package}/android.test.InstrumentationTestRunner"/>
+		</exec>
+
+	</target>
+
+
 	<target name="help">
 		<echo>ReleaseTool. Available </echo>
 		<echo>   </echo>
