@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ReleaseTool" default="help" basedir=".">
+<project name="Tool" default="help" >
 
-	<property name="app.apk" value="AppInfo.apk"/>
-	<property name="unsigned.apk" value="AppInfo-unsigned.apk"/>
+	<property file="${user.dir}/tool.properties" />
 
 	<property name="dist.dir" value="dist"/>
 	<property name="bin.dir" value="bin"/>
-
-	<property name="sign.alias" value="infoteria"/>
-	<property name="sign.keystore" value="apk.sign.keystore"/>
-	<property name="sign.storepass" value="apk.sign.password" />
 
 	<target name="clean">
 	  <ant antfile="build.xml" target="clean" />
@@ -24,15 +19,23 @@
 	</target>
 
 	<target name="keystore">
+
+		<echo>CN = ${dname.cn}</echo>
+		<echo>OU = ${dname.ou}</echo>
+		<echo>O  = ${dname.o}</echo>
+		<echo>L  = ${dname.l}</echo>
+		<echo>ST = ${dname.st}</echo>
+		<echo>C  = ${dname.c}</echo>
+
 		<delete file="${sign.keystore}" />
-		<genkey alias="${sign.alias}" storepass="${sign.storepass}" keystore="${sign.keystore}" validity="10000" >
+		<genkey alias="${sign.alias}" storepass="${sign.storepass}" keystore="${user.dir}/${sign.keystore}" validity="10000" >
 			<dname>
-				<param name="CN" value="Developer"/>
-				<param name="OU" value="R&amp;D"/>
-				<param name="O"  value="INFOTERIA"/>
-				<param name="L"  value="Shinagawa-Ku"/>
-				<param name="ST" value="Tokyo"/>
-				<param name="C"  value="JP"/>
+				<param name="CN" value="${dname.cn}"/>
+				<param name="OU" value="${dname.ou}"/>
+				<param name="O"  value="${dname.o}"/>
+				<param name="L"  value="${dname.l}"/>
+				<param name="ST" value="${dname.st}"/>
+				<param name="C"  value="${dname.c}"/>
 			</dname>
 		</genkey>
 	</target>

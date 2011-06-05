@@ -5,7 +5,7 @@
      tool.
      It contains the path to the SDK. It should *NOT* be checked into
      Version Control Systems. -->
-    <property file="local.properties" />
+    <property file="../local.properties" />
 
     <!-- The build.properties file can be created by you and is never touched
          by the 'android' tool. This is the place to change some of the
