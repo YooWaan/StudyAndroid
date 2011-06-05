@@ -31,12 +31,14 @@ public class WidgetAndService extends Activity {
 		Button btn = (Button)findViewById(R.id.btn_start);
 		btn.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
+					serviceEnabled(true);
 				}
 			});
 
 		btn = (Button)findViewById(R.id.btn_stop);
 		btn.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
+					serviceEnabled(false);
 				}
 			});
 

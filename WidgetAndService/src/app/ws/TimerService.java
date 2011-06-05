@@ -3,6 +3,7 @@ package app.ws;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.security.SecureRandom;
 
 import android.app.Service;
 import android.app.Notification;
@@ -14,6 +15,7 @@ import android.content.Intent;
 import android.content.ComponentName;
 import android.graphics.Color;
 import android.widget.Toast;
+import android.widget.RemoteViews;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -49,6 +51,7 @@ public class TimerService extends Service {
 
 		synchronized (LOCK) {
 			if (stopTimer()) {
+				updateWidget(Color.GRAY);
 				Toast.makeText(this, "Service stoped", Toast.LENGTH_SHORT).show();
 			}
 		}
@@ -87,6 +90,29 @@ public class TimerService extends Service {
 		return PendingIntent.getActivity(ctx, 0, launchIntent, 0);
 	}
 
+	protected void updateWidget(int color) {
+		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+		int widgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(this, StarWidget.class));
+		if (widgetIds != null && widgetIds.length > 0) {
+			appWidgetManager.updateAppWidget(widgetIds, newRemoteViews(color));
+		}
+	}
+
+	protected RemoteViews newRemoteViews(int color) {
+		RemoteViews views = new RemoteViews(this.getPackageName(), R.layout.widget);
+		int imgId = R.drawable.gray;
+		if (color == Color.GREEN) {
+			imgId = R.drawable.green;
+		} else if (color == Color.RED) {
+			imgId = R.drawable.red;
+		} else if (color == Color.BLUE) {
+			imgId = R.drawable.blue;
+		}
+		views.setImageViewResource(R.id.widget_image, imgId);
+		views.setOnClickPendingIntent(R.id.widget_image, getLaunchIntent());
+		return views;
+	}
+
 	class SampleTimerTask extends TimerTask {
 
 		private TimerService mService;
@@ -100,8 +126,7 @@ public class TimerService extends Service {
 
 		@Override
 		public void run() {
-			long now = System.currentTimeMillis();
-			long colorIndex = now % 3;
+			long colorIndex = new SecureRandom().nextLong() % 3;
 			int color = Color.GRAY;
 			if (colorIndex == 0) {
 				color = Color.GREEN;
@@ -111,7 +136,8 @@ public class TimerService extends Service {
 				color = Color.BLUE;
 			}
 			if (mPrevColor != color) {
-				notifyMessage(color, now);
+				notifyMessage(color, System.currentTimeMillis());
+				mService.updateWidget(color);
 			}
 		}
 
@@ -120,8 +146,18 @@ public class TimerService extends Service {
 			Notification notify = new Notification(R.drawable.icon, sv.getString(R.string.app_name), now);
 			PendingIntent intent = sv.getLaunchIntent();
 			String title = "Service Notification";
-			String message = "Color change [" + color + "]";
-			notify.setLatestEventInfo(sv, title, message, intent);
+			StringBuilder message = new StringBuilder("Color change [");
+			if (color == Color.GREEN) {
+				message.append("GREEN");
+			} else if (color == Color.RED) {
+				message.append("RED");
+			} else if (color == Color.BLUE) {
+				message.append("BLUE");
+			} else {
+				message.append("GRAY");
+			}
+			message.append("]");
+			notify.setLatestEventInfo(sv, title, message.toString(), intent);
 			int cancelId = sv.getCancelId();
 			mNotifier.cancel(cancelId);
 			mNotifier.notify(cancelId, notify);
