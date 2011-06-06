@@ -15,7 +15,7 @@
 	</target>
 
 	<target name="apk-copy" depends="compile">
-		<copy file="${bin.dir}/${unsigned.apk}" tofile="${dist.dir}/${app.apk}" />
+		<copy file="${user.dir}/${bin.dir}/${unsigned.apk}" tofile="${user.dir}/${dist.dir}/${app.apk}" />
 	</target>
 
 	<target name="keystore">
@@ -41,7 +41,7 @@
 	</target>
 
 	<target name="sign">
-	  <signjar jar="${dist.dir}/${app.apk}" alias="${sign.alias}" keystore="${sign.keystore}" storepass="${sign.storepass}" />
+	  <signjar jar="${user.dir}/${dist.dir}/${app.apk}" alias="${sign.alias}" keystore="${user.dir}/${sign.keystore}" storepass="${sign.storepass}" />
 	</target>
 
 	<target name="dist" depends="clean,compile,apk-copy,sign" />
