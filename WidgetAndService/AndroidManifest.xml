@@ -3,6 +3,7 @@
       package="app.ws"
       android:versionCode="1"
       android:versionName="1.0">
+	<supports-screens android:resizeable="true"/>
     <application android:label="@string/app_name">
         <activity android:name="WidgetAndService"
                   android:label="@string/app_name">

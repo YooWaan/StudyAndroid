@@ -3,6 +3,7 @@
       package="app.appinfo"
       android:versionCode="1"
       android:versionName="Application&#xa;Information&#xa;1.0.0&#xa;Copyright &#169; Your Organization.&#xa;All rights reserved.">
+	<supports-screens android:resizeable="true"/>
     <application android:label="@string/app_name">
         <activity android:name="AppInfo"
                   android:label="@string/app_name">
