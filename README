@@ -1,1 +1,9 @@
 this project's purpose is study simple level android development .
+
+
+--- Notice ---
+
+Please modify local.properties file variable.
+
+sdk.dir={your sdk home path}
+
