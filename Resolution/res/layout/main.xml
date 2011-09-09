@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:gravity="center"
+    >
+
+  <TextView
+	android:id="@android:id/text1"
+	android:gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+	android:textAppearance="?android:attr/textAppearanceLarge"
+	/>
+
+<TableLayout
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" >
+
+  <View android:layout_width="match_parent" android:layout_height="1px" android:background="#DFDFDF" />
+
+  <TableRow android:gravity="center">
+
+	<ImageView android:src="@drawable/lemo"
+			   android:layout_width="wrap_content"
+			   android:layout_height="wrap_content" />
+
+	<ImageView android:src="@drawable/memo"
+			   android:layout_width="wrap_content"
+			   android:layout_height="wrap_content" />
+
+	<ImageView android:src="@drawable/hemo"
+			   android:layout_width="wrap_content"
+			   android:layout_height="wrap_content" />
+
+	<ImageView android:src="@drawable/xemo"
+			   android:layout_width="wrap_content"
+			   android:layout_height="wrap_content" />
+  </TableRow>
+
+  <TableRow android:padding="24dp" android:gravity="center">
+
+	<TextView android:text=" -- 120dpi ldpi"
+			  android:id="@+id/ldpi"
+			  android:textAppearance="?android:attr/textAppearanceLarge"
+			  android:layout_width="wrap_content"
+			  android:layout_height="wrap_content" />
+	<TextView android:text=" -- 160dpi mdpi"
+			  android:id="@+id/mdpi"
+			  android:textAppearance="?android:attr/textAppearanceLarge"
+			  android:layout_width="wrap_content"
+			  android:layout_height="wrap_content" />
+	<TextView android:text=" -- 240dpi hdpi"
+			  android:id="@+id/hdpi"
+			  android:textAppearance="?android:attr/textAppearanceLarge"
+			  android:layout_width="wrap_content"
+			  android:layout_height="wrap_content" />
+	<TextView android:text=" -- 320dpi xhdpi"
+			  android:id="@+id/xhdpi"
+			  android:textAppearance="?android:attr/textAppearanceLarge"
+			  android:layout_width="wrap_content"
+			  android:layout_height="wrap_content" />
+  </TableRow>
+
+  <View android:layout_width="match_parent" android:layout_height="1px" android:background="#DFDFDF" />
+
+  <TableRow android:gravity="center">
+
+	<TextView
+		android:text="Information"
+		android:layout_span="2"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+	<TextView
+		android:text="This Resolution Image"
+		android:layout_span="2"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+  </TableRow>
+
+  <TableRow android:gravity="center">
+
+	<TextView
+		android:id="@android:id/text2"
+		android:layout_span="2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Draw"
+		/>
+
+	<ImageView 
+		android:src="@drawable/emo_im_happy"
+		android:layout_span="2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+  </TableRow>
+
+</TableLayout>
+
+</LinearLayout>

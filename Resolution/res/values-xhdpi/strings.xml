@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Resolution Check - extra high -</string>
+    <string name="resolution">This is [extra high]</string>
+</resources>
