@@ -7,3 +7,21 @@ Please modify local.properties file variable.
 
 sdk.dir={your sdk home path}
 
+Please copy gradle template wrapper directory.
+
+copy -r $ANDROID_HOME/tools/templates/gradle/wrapper/gradle/wrapper/gradle-wrapper.jar <app dir>/gradle/wrapper
+
+--- How to generate documents ---
+
+install theme
+
+  cd docs/themes
+  git clone https://github.com/nilproductions/hugo-bootswatch.git
+
+generate html  
+  
+  hugo -t hugo-bootswatch
+
+check  
+  
+  hugo server -t hugo-bootswatch -D -w

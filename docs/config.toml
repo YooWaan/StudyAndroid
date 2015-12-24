@@ -1,0 +1,23 @@
+baseurl = "http://replace-this-with-your-hugo-site.com/"
+title = "StudyAndroid"
+paginate = 10
+#defaultLayout = "docs"
+
+[author]
+ name = "YooWaan"
+
+[params]
+ languagecode = "ja-JP"
+ author = "<authorname>"
+ copyright = "2015 Copyright Text <authorname>"
+ use_summaries = false
+
+[params.strings]
+ home_navbar_link = "ホーム"
+ blog_navbar_link = "一覧"
+ date_format = ""
+
+[params.theme]
+ inverse = false
+ name = "Cerulean"
+#    name = "flatly" 
